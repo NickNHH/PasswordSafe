@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>All entries - Password vault</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="p-3">
+    <h4>All entries</h4>
+    <div class="row">
+        <div class="col-sm-2" th:switch="${listOfEntries}">
+            <h4 th:case="null">No entry available yet!</h4>
+            <table class="table table-striped" th:case="*">
+                <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Password</th>
+                    <th>Login name</th>
+                    <th>Email</th>
+                    <th>Comment(s)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="entry : ${listOfEntries}">
+                    <td th:text="${entry.url}"></td>
+                    <td th:text="${entry.password}"></td>
+                    <td th:text="${entry.loginName}"></td>
+                    <td th:text="${entry.email}"></td>
+                    <td th:text="${entry.comment}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <p></p>
+        <h5>Add new entry</h5>
+        <form action="#" th:action="@{/add-entry}" th:object="${newEntry}" method="post" class="col-sm-4">
+            <div class="form-group">
+                <label for="urlId">URL:</label>
+                <input type="text" class="form-control" id="urlId" th:field="*{url}"/>
+                <label for="passwordId">Password:</label>
+                <input type="password" class="form-control" id="passwordId" th:field="*{password}"/>
+                <label for="loginNameId">Login name:</label>
+                <input type="text" class="form-control" id="loginNameId" th:field="*{loginName}"/>
+                <label for="emailId">Email:</label>
+                <input type="text" class="form-control" id="emailId" th:field="*{email}"/>
+                <label for="commentId">Comment(s):</label>
+                <input type="text"	class="form-control" id="commentId" th:field="*{comment}" />
+            </div>
+            <p>
+                <input type="submit" class="btn btn-success" value="Add"/>
+                <a class="btn btn-warning" href="delete-lastEntry">Delete last entry</a>
+            </p>
+        </form>
+    </div>
+</div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

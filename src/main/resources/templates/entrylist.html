@@ -4,27 +4,27 @@
     <title>All entries - Password vault</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<div class="p-3">
+<body style="background-color: #f0f0f0">
+<div class="p-3" style="margin-left: 30px">
     <h4>All entries</h4>
     <div class="row">
         <div class="col-sm-2" th:switch="${listOfEntries}">
             <h4 th:case="null">No entry available yet!</h4>
-            <table class="table table-striped" th:case="*">
+            <table class="table table-dark" th:case="*">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>URL</th>
-                    <th>Password</th>
-                    <th>Login name</th>
-                    <th>Email</th>
-                    <th>Comment(s)</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Comment(s)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="entry : ${listOfEntries}">
-                    <td th:text="${entry.id}"></td>
                     <td th:text="${entry.url}"></td>
                     <td th:text="${entry.password}"></td>
                     <td th:text="${entry.loginName}"></td>
@@ -39,7 +39,7 @@
         <p></p>
         <h5>Add new entry</h5>
         <form action="#" th:action="@{/add-entry}" th:object="${newEntry}" method="post" class="col-sm-4">
-            <div class="form-group">
+            <div class="form-group" style="margin-top: 10px">
                 <label for="urlId">URL:</label>
                 <input type="text" class="form-control" id="urlId" th:field="*{url}"/>
                 <label for="passwordId">Password:</label>
@@ -59,7 +59,7 @@
     </div>
 </div>
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input style="margin-left: 60px" class="btn btn-danger" type="submit" value="Sign Out"/>
 </form>
 </body>
 </html>

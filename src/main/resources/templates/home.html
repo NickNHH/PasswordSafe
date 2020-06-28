@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <head>
     <title>Home - Password vault</title>
 </head>
-<body>
-<h1>Password vault</h1>
+<body style="background-color: #f0f0f0">
+<h1 style="margin-top: 20px; margin-left: 30px">Password vault</h1>
 
-<p>Welcome to the password vault.</p>
-<p>Click <a th:href="@{/list-entries}">here</a> to proceed to the vault.</p>
+<h6 style="margin-top: 10px; margin-left: 32px">Welcome to the password vault.</h6>
+<p  style="margin-top: -10px; margin-left: 32px">Click <a th:href="@{/list-entries}">here</a> to proceed to the vault.</p>
 </body>
 </html>

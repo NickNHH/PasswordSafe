@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <head>
     <title>Login - Password vault</title>
 </head>
-<body>
+<body style="background-color: #f0f0f0">
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
@@ -12,9 +14,9 @@
     You have been logged out.
 </div>
 <form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
+    <div><input class="form-control form-control-lg" type="text" name="username" placeholder="Username" style="margin-top: 30px; margin-left: 30px; width: 399px; height: 40px"/></div>
+    <div> <input class="form-control form-control-lg" type="password" name="password" placeholder="Password"style="margin-top: 15px; margin-left: 30px; width: 399px; height: 40px"/></div>
+    <div><input class="btn btn-primary mb-2" type="submit" value="Sign In" style="margin-top: 30px; margin-left: 175px"/></div>
 </form>
 </body>
 </html>

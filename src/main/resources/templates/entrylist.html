@@ -14,6 +14,7 @@
             <table class="table table-striped" th:case="*">
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>URL</th>
                     <th>Password</th>
                     <th>Login name</th>
@@ -23,6 +24,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="entry : ${listOfEntries}">
+                    <td th:text="${entry.id}"></td>
                     <td th:text="${entry.url}"></td>
                     <td th:text="${entry.password}"></td>
                     <td th:text="${entry.loginName}"></td>

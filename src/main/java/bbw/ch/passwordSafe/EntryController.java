@@ -33,13 +33,16 @@ public class EntryController {
 
     @PostMapping("/add-entry")
     public String addEntry(@ModelAttribute Entry newEntry, Model model) {
-        try {
-            String encryptedPW = Encryptor.encrypt(newEntry.getPassword().getBytes(UTF_8), pSalt);
-            newEntry.setPassword(encryptedPW);
-        } catch (Exception e) {
-            e.printStackTrace();
+        String message = isSafe(newEntry.getPassword());
+        if (message.equals("safe")) {
+            try {
+                String encryptedPW = Encryptor.encrypt(newEntry.getPassword().getBytes(UTF_8), pSalt);
+                newEntry.setPassword(encryptedPW);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            entryList.addEntry(newEntry);
         }
-        entryList.addEntry(newEntry);
         model.addAttribute("listOfEntries", entryList.getAllEntries());
         return "redirect:/list-entries";
     }
@@ -47,7 +50,7 @@ public class EntryController {
     @GetMapping("/delete-lastEntry")
     public String deleteLastEntry(Model model) {
         if ((entryList.getAllEntries()) != null && (entryList.getAllEntries().size() > 0)) {
-            entryList.getAllEntries().remove(entryList.getAllEntries().size()-1);
+            entryList.getAllEntries().remove(entryList.getAllEntries().size() - 1);
         }
         model.addAttribute("listOfEntries", entryList.getAllEntries());
         return "redirect:/list-entries";
@@ -64,5 +67,29 @@ public class EntryController {
             }
         }
         return "redirect:/login?logout";
+    }
+
+    private String isSafe(String password) {
+        //Check length
+        if (password.length() < 8) {
+            return "Password too short";
+        }
+        //Check if password contains one digit
+        if (!password.matches("(?=.*[0-9]).*")) {
+            return "Password needs at least one digit";
+        }
+        //Check if password contains one lower case letter
+        if (!password.matches("(?=.*[a-z]).*")) {
+            return "Password needs at least one lower case letter";
+        }
+        //Check if password contains one upper case letter
+        if (!password.matches("(?=.*[A-Z]).*")) {
+            return "Password needs at least one upper case letter";
+        }
+        //Check if password contains one special character
+        if (!password.matches("(?=.*[~?!@#$%^&*()_]).*")) {
+            return "Password needs at least one special character (~?!@#$%^&*()_)";
+        }
+        return "safe";
     }
 }

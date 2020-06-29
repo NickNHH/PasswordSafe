@@ -34,7 +34,7 @@ public class EntryController {
     @PostMapping("/add-entry")
     public String addEntry(@ModelAttribute Entry newEntry, Model model) {
         String message = isSafe(newEntry.getPassword());
-        if (message.equals("safe")) {
+        if (message.equals("safe") && entryIsValid(newEntry)) {
             try {
                 String encryptedPW = Encryptor.encrypt(newEntry.getPassword().getBytes(UTF_8), pSalt);
                 newEntry.setPassword(encryptedPW);
@@ -49,7 +49,7 @@ public class EntryController {
 
     @GetMapping("/delete-lastEntry")
     public String deleteLastEntry(Model model) {
-        if ((entryList.getAllEntries()) != null && (entryList.getAllEntries().size() > 0)) {
+        if ((entryList.getAllEntries()) != null && (entryList.getAllEntries().size() > 1)) {
             entryList.getAllEntries().remove(entryList.getAllEntries().size() - 1);
         }
         model.addAttribute("listOfEntries", entryList.getAllEntries());
@@ -91,5 +91,24 @@ public class EntryController {
             return "Password needs at least one special character (~?!@#$%^&*()_)";
         }
         return "safe";
+    }
+
+    private boolean entryIsValid(Entry entry) {
+        if (entry.getUrl().trim().equals("")) {
+            return false;
+        }
+        if (entry.getPassword().trim().equals("")) {
+            return false;
+        }
+        if (entry.getComment().trim().equals("")) {
+            return false;
+        }
+        if (entry.getEmail().trim().equals("")) {
+            return false;
+        }
+        if (entry.getLoginName().trim().equals("")) {
+            return false;
+        }
+        return true;
     }
 }

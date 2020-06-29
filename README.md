@@ -40,10 +40,13 @@ auch wenn hier nur der BCrypt Hash zu sehen ist, ist dies immernoch unsicher wen
 Also könnte man hier die Sicherheit noch verbessern, jedoch haben wir nicht heraausgefunden wie genau man dies umsetzt.
  
 Für die Verschlüsselung haben wir eine Symmterische Verschlüsselung verwendet (AES).
+Zusätzlich verwendet unsere Verschlüsselung Salt.
 Wir denken die Umsetzung davon ist Sicherheitsmässig nicht perfekt, jedoch trotzdem in Ordnung, da die Passwörter nie unverschlüsselt abgespeichert werden. 
 
 ## Weiterführende Gedanken
 Hier eine Liste von Dingen, die wir noch umsetzen wollten:
 * Einträge editieren
+* Login sicherer machen
+* Möglichkeit, selber einen User zu erstellen und dafür das Passwort ändern
 * Bessere Input Validierung (E-Mail, Login, etc.)
 * Schöneres Frontend

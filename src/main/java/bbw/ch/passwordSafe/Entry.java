@@ -8,11 +8,11 @@ public class Entry {
     private String email;
     private String comment;
 
-    public Entry() {
+    Entry() {
         super();
     }
 
-    public Entry(long id, String url, String password, String loginName, String email, String comment) {
+    Entry(long id, String url, String password, String loginName, String email, String comment) {
         this.id = id;
         this.url = url;
         this.password = password;
@@ -21,11 +21,11 @@ public class Entry {
         this.comment = comment;
     }
 
-    public long getId() {
+    long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    void setId(long id) {
         this.id = id;
     }
 
@@ -33,7 +33,7 @@ public class Entry {
         return url;
     }
 
-    public void setUrl(String url) {
+    void setUrl(String url) {
         this.url = url;
     }
 

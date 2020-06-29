@@ -22,13 +22,13 @@ public class Encryptor {
 
     private static final String ENCRYPT_ALGO = "AES/GCM/NoPadding";
 
-    private static final int TAG_LENGTH_BIT = 128; // must be one of {128, 120, 112, 104, 96}
+    private static final int TAG_LENGTH_BIT = 128;
     private static final int IV_LENGTH_BYTE = 12;
     private static final int SALT_LENGTH_BYTE = 16;
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     // return a base64 encoded AES encrypted text
-    public static String encrypt(byte[] pText, String password) throws Exception {
+    static String encrypt(byte[] pText, String password) throws Exception {
 
         // 16 bytes salt
         byte[] salt = CryptoUtils.getRandomNonce(SALT_LENGTH_BYTE);
@@ -58,7 +58,7 @@ public class Encryptor {
     }
 
     // we need the same password, salt and iv to decrypt it
-    public static String decrypt(String cText, String password) throws Exception {
+    static String decrypt(String cText, String password) throws Exception {
 
         byte[] decode = Base64.getDecoder().decode(cText.getBytes(UTF_8));
 
@@ -85,22 +85,4 @@ public class Encryptor {
 
         return new String(plainText, UTF_8);
     }
-
-    /*public static void main(String[] args) throws Exception {
-        String OUTPUT_FORMAT = "%-30s:%s";
-        String PASSWORD = "this is a password";
-        String pText = "AES-GSM Password-Bases encryption!";
-
-        String encryptedTextBase64 = Encryptor.encrypt(pText.getBytes(UTF_8), PASSWORD);
-
-        System.out.println("\n------ AES GCM Password-based Encryption ------");
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (plain text)", pText));
-        System.out.println(String.format(OUTPUT_FORMAT, "Encrypted (base64) ", encryptedTextBase64));
-
-        System.out.println("\n------ AES GCM Password-based Decryption ------");
-        System.out.println(String.format(OUTPUT_FORMAT, "Input (base64)", encryptedTextBase64));
-
-        String decryptedText = Encryptor.decrypt(encryptedTextBase64, PASSWORD);
-        System.out.println(String.format(OUTPUT_FORMAT, "Decrypted (plain text)", decryptedText));
-    }*/
 }

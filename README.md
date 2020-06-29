@@ -2,6 +2,11 @@
 Dokumentation von Livio Luna und Nico Tuscano aus der Klasse 5ia17a zum Abschlussprojekt "Password Safe"
 im Modul 122 von Rinaldo Lanza.
 
+## Login
+Diese Applikation beinhaltet einen fixen user:
+Login: user
+Passwort: secret123
+
 ## Reflexion Livio
 Die Zusammenarbeit mit Herrn Tuscano hat mir sehr gefallen, da wir uns auch so super verstehen. 
 Die Arbeiten haben wir meiner Meinung nach gut und so genau wie wir konnten gelöst. 
@@ -30,6 +35,15 @@ Für das nächste mal sollten wir uns mehr Zeit nehmen für die Planung, damit w
 Aber als Abschluss kann ich sagen, dass ich zufrieden mit unserem Produkt bin.
 
 ## Sicherheitsaspekte
-
+Für die Login Seite wäre es sicherer wenn das Passwort überhaupt nicht im Source Code steht,
+auch wenn hier nur der BCrypt Hash zu sehen ist, ist dies immernoch unsicher wenn man dies in Produktion benutzt.
+Also könnte man hier die Sicherheit noch verbessern, jedoch haben wir nicht heraausgefunden wie genau man dies umsetzt.
+ 
+Für die Verschlüsselung haben wir eine Symmterische Verschlüsselung verwendet (AES).
+Wir denken die Umsetzung davon ist Sicherheitsmässig nicht perfekt, jedoch trotzdem in Ordnung, da die Passwörter nie unverschlüsselt abgespeichert werden. 
 
 ## Weiterführende Gedanken
+Hier eine Liste von Dingen, die wir noch umsetzen wollten:
+* Einträge editieren
+* Bessere Input Validierung (E-Mail, Login, etc.)
+* Schöneres Frontend

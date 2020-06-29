@@ -46,7 +46,16 @@ Wir denken die Umsetzung davon ist Sicherheitsmässig nicht perfekt, jedoch trot
 ## Weiterführende Gedanken
 Hier eine Liste von Dingen, die wir noch umsetzen wollten:
 * Einträge editieren
+* Rubriken hinzufügen (Games, Geschäft, etc.)
 * Login sicherer machen
 * Möglichkeit, selber einen User zu erstellen und dafür das Passwort ändern
 * Bessere Input Validierung (E-Mail, Login, etc.)
 * Schöneres Frontend
+ 
+Was passiert, wenn ein Benutzer sein Passwort vergisst?  
+Wir hatten keine Zeit um dies umzusetzen, aber wir denken der beste Weg dafür wäre wie folgt:
+Bei der erstellung des User, soll der User sein Login, Passwort und E-mail angeben.
+Wenn er nun sein Passwort vergisst, wird auf die angegebene E-mail ein Link geschickt, wo er sein Passwort sicher ändern kann.
+Dabei enthält der Link ein Token, welches nur für eine gewisse Zeit aktiv ist und damit sicher gestellt wird,
+dass man die Passwort ändern Seite nur mit einem gültigen Token betreten kann. Der Token im Link wird
+abgeglichen mit dem, welches verschickt worden ist über Mail und falls diese übereinstimmer, wird der Zugang bewilligt.
